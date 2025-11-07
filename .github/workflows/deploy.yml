@@ -1,0 +1,14 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: AKIA0NXRTRLAWMTICRCN
+      AWS_SECRET_ACCESS_KEY: kAssMCLoBj90xHUpGNGbGPbQYyeuwElHp7STIW8N
+    steps:
+      - uses: actions/checkout@v4
+      - run: aws s3 sync ./public s3://ember-schedule-service-site --delete
